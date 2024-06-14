@@ -11,6 +11,9 @@ export default defineConfig(({ mode }) => ({
   resolve: {
     mainFields: ['module'],
   },
+  ssr: {
+    noExternal: ['@ngaox/**'],
+  },
   plugins: [analog()],
   test: {
     globals: true,

@@ -1,0 +1,42 @@
+<nav class="bg-white border-stone-200 dark:bg-stone-900 w-full">
+  <div
+    class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4 gap-y-6"
+  >
+    <a routerLink="/" class="flex items-center space-x-3">
+      <img class="h-8" alt="NgMorocco Logo" src="/assets/logo.png" />
+      <span
+        class="self-center text-xl font-semibold whitespace-nowrap dark:text-white"
+      >
+        NgMorocco
+      </span>
+    </a>
+    <div class="flex md:order-2">
+      <app-navbar-button (click)="openSearchDialog()">
+        <ngaox-icon
+          name="app:search"
+          class="h-full aspect-square pb-1 pt-0.5 text-stone-500 dark:text-stone-400"
+        ></ngaox-icon>
+
+        <span class="pr-10 ml-2 hidden lg:inline-block">Search...</span>
+      </app-navbar-button>
+
+      <app-navbar-button class="ml-2" (click)="toggleTheme()">
+        <ngaox-icon
+          [name]="themeService.isDarkMode() ? 'app:sun' : 'app:moon'"
+          class="h-full aspect-square p-0.5 text-stone-500 dark:text-stone-400"
+        ></ngaox-icon>
+      </app-navbar-button>
+    </div>
+    <ul
+      class="flex font-medium justify-center rounded-lg space-x-6 w-full md:w-auto md:order-1"
+    >
+      <li>
+        <app-navbar-item label="Playlist" route="/playlist"></app-navbar-item>
+      </li>
+      <li><app-navbar-item label="Blog"></app-navbar-item></li>
+      <li><app-navbar-item label="News"></app-navbar-item></li>
+      <li><app-navbar-item label="Tips"></app-navbar-item></li>
+      <li><app-navbar-item label="About"></app-navbar-item></li>
+    </ul>
+  </div>
+</nav>
