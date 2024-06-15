@@ -28,6 +28,7 @@
     "@angular/platform-server": "^18.0.0",
     "@angular/router": "^18.0.0",
     "@ngaox/icons": "^5.0.2",
+    "algoliasearch": "^4.23.3",
     "flowbite": "^2.3.0",
     "front-matter": "^4.0.2",
     "marked": "^5.0.2",

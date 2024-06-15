@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarItemComponent } from './navbar-item.component';
 import { ThemeService } from '../../../core/services/theme.service';
@@ -29,6 +29,9 @@ export class NavbarComponent {
   }
 
   openSearchDialog() {
-    this.dialog.open(SearchDialogComponent);
+    this.dialog.open(SearchDialogComponent, {
+      width: '500px',
+      maxWidth: 'calc(100vw - 32px)',
+    });
   }
 }

@@ -1,3 +1,49 @@
-<div class="bg-white p-4">
-  <p>search-dialog works!</p>
+<div class="bg-white dark:bg-stone-800 rounded-xl overflow-hidden">
+  <app-search-input
+    [delay]="200"
+    [value]="query()"
+    (query)="onQuery($event)"
+  ></app-search-input>
+  <div
+    style="max-height: calc(100vh - 150px)"
+    class="border-y p-4 min-h-28 border-stone-300 dark:border-stone-700 overflow-auto"
+  >
+    @if (!query()) {
+      <span class="text-stone-500 dark:text-stone-400 block text-center mt-4">
+        Start typing to find cool stuff
+      </span>
+    } @else if (results().size === 0) {
+      <span class="text-stone-500 dark:text-stone-400 block text-center mt-4">
+        No results found for "<span class="font-bold">{{ query() }}</span
+        >"
+      </span>
+    } @else {
+      @for (result of results() | keyvalue; track $index) {
+        <div class="mb-4">
+          <h2
+            class="mb-2 text-lg font-semibold text-stone-900 dark:text-stone-50"
+          >
+            {{ result.key }}
+          </h2>
+          <ul
+            class="max-w-md space-y-1 text-stone-500 list-disc list-inside dark:text-stone-400"
+          >
+            @for (hit of result.value; track $index) {
+              <li>
+                <a
+                  (click)="onSearchHit(hit)"
+                  class="hover:underline cursor-pointer"
+                >
+                  {{ hit.title }}
+                </a>
+              </li>
+            }
+          </ul>
+        </div>
+      }
+    }
+  </div>
+  <footer class="p-4 flex justify-end">
+    <img src="/assets/algolia.svg" alt="Search by Algilia" />
+  </footer>
 </div>
