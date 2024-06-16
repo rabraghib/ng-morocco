@@ -1,0 +1,38 @@
+<div class="xl:grid grid-cols-[1fr,auto] gap-6">
+  <section class="prose max-w-none prose-sm prose-stone dark:prose-invert">
+    <ng-content></ng-content>
+  </section>
+  <aside class="p-2 w-72 hidden xl:block">
+    @if (video(); as video) {
+      <app-playlist-edit-button
+        class="block mb-2"
+        [filePath]="getVideFilePath(video)"
+      >
+        <h2 class="text-lg font-bold text-stone-900 dark:text-stone-50">
+          Chapters
+        </h2>
+      </app-playlist-edit-button>
+      @if (chapters.length > 0) {
+        <ul class="list-none space-y-3">
+          @for (chapter of chapters; track $index) {
+            <li>
+              <a
+                routerLink="/"
+                (click)="seekToChapter(chapter)"
+                class="cursor-pointer {{
+                  isActive(chapter)
+                    ? 'text-red-600 dark:text-red-500'
+                    : 'text-stone-600 dark:text-stone-400 hover:text-red-600 dark:hover:text-red-500'
+                }} "
+              >
+                {{ chapter.title }}
+              </a>
+            </li>
+          }
+        </ul>
+      } @else {
+        <p class="text-stone-600 dark:text-stone-400">No chapters added yet</p>
+      }
+    }
+  </aside>
+</div>

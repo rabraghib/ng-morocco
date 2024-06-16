@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, HostBinding, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { NavbarItemComponent } from './navbar-item.component';
 import { ThemeService } from '../../../core/services/theme.service';

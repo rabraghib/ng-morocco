@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
+import { PlaylistLayoutComponent } from './layout/layout.component';
 
 @Component({
   standalone: true,
-  imports: [],
-  template: ` <p>contribute page works!!</p> `,
+  templateUrl: './contribute.page.html',
+  imports: [PlaylistLayoutComponent],
 })
 export default class ContributePage {}

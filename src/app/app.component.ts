@@ -11,7 +11,7 @@ import { FooterComponent } from './shared/components/footer/footer.component';
   imports: [RouterOutlet, NavbarComponent, FooterComponent],
   template: `
     <div class="min-h-screen grid grid-rows-[auto,1fr]">
-      <app-navbar></app-navbar>
+      <app-navbar class="block sticky top-0 z-50"></app-navbar>
       <main class="min-h-full">
         <router-outlet></router-outlet>
       </main>

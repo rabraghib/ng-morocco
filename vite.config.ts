@@ -16,7 +16,13 @@ export default defineConfig(async ({ mode }) => {
     ssr: {
       noExternal: ['@ngaox/**'],
     },
-    plugins: [analog()],
+    plugins: [
+      analog({
+        vite: {
+          inlineStylesExtension: 'scss',
+        },
+      }),
+    ],
     test: {
       globals: true,
       environment: 'jsdom',

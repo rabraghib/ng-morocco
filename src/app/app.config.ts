@@ -8,6 +8,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { provideFileRouter } from '@analogjs/router';
 import { IconsModule } from '@ngaox/icons';
 import { APP_ICONS } from './shared/icons';
+import { provideMarkdown } from 'ngx-markdown';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(withFetch()),
     provideClientHydration(),
     importProvidersFrom(IconsModule.forRoot(APP_ICONS)),
+    provideMarkdown(),
   ],
 };

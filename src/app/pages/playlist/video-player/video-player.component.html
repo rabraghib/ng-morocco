@@ -1,0 +1,13 @@
+<div class="app-video-player">
+  <!-- *appRerender="videoId" -->
+  <youtube-player
+    [videoId]="videoId()"
+    [endSeconds]="endSeconds()"
+    [startSeconds]="startSeconds()"
+    [playerVars]="{
+      autoplay: 1,
+      rel: 0,
+    }"
+    class="block absolute w-full h-full inset-0"
+  ></youtube-player>
+</div>

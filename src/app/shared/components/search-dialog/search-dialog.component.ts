@@ -50,7 +50,7 @@ export class SearchDialogComponent {
       queryParams: {
         start: timeToSeconds(hit.start),
         end: timeToSeconds(hit.end),
-        ts: new Date().getTime(),
+        // ts: new Date().getTime(),
       },
     });
     this.dialog.closeAll();

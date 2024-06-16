@@ -1,0 +1,33 @@
+<div class="w-72 space-y-3">
+  @for (item of items(); track $index) {
+    <a
+      routerLinkActive
+      [routerLink]="item.route"
+      #rla="routerLinkActive"
+      class="block w-full px-4 py-2 cursor-pointer border border-stone-200 dark:border-stone-700 rounded-lg shadow {{
+        rla.isActive
+          ? 'bg-red-700 dark:bg-red-600 text-white'
+          : 'bg-white dark:bg-stone-900 hover:bg-stone-100 dark:hover:bg-stone-700'
+      }}"
+    >
+      <div>
+        <h5
+          class="text-lg font-semibold {{
+            rla.isActive ? 'text-white' : 'text-stone-900 dark:text-white'
+          }}"
+        >
+          {{ item.title }}
+        </h5>
+        <p
+          class="font-normal {{
+            rla.isActive
+              ? 'text-stone-200'
+              : 'text-stone-500 dark:text-stone-400'
+          }}"
+        >
+          {{ item.subTitle }}
+        </p>
+      </div>
+    </a>
+  }
+</div>
