@@ -20,27 +20,7 @@ import { interval, map } from 'rxjs';
   standalone: true,
   imports: [YouTubePlayerModule],
   templateUrl: './video-player.component.html',
-  encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  styles: `
-    // tricks for making embed iframe video responsive
-    .app-video-player {
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%;
-      &::before {
-        box-sizing: border-box;
-        display: block;
-        content: '';
-      }
-      youtube-player youtube-player-placeholder,
-      youtube-player iframe,
-      youtube-player > div {
-        width: 100% !important;
-        height: 100% !important;
-      }
-    }
-  `,
 })
 export class VideoPlayerComponent implements OnInit {
   readonly videoId = input<string>();

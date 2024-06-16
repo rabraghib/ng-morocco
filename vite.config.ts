@@ -3,7 +3,6 @@
 import { defineConfig, loadEnv } from 'vite';
 import analog from '@analogjs/platform';
 
-
 if (process.env['NETLIFY'] === 'true') {
   let base = process.env['URL'];
 
@@ -25,7 +24,7 @@ export default defineConfig(async ({ mode }) => {
       mainFields: ['module'],
     },
     ssr: {
-      noExternal: ['@ngaox/**'],
+      noExternal: ['@ngaox/**', '@algolia/**', 'algoliasearch'],
     },
     plugins: [
       analog({

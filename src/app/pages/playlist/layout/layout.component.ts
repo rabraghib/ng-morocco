@@ -26,7 +26,7 @@ export class PlaylistLayoutComponent {
     const currentTime = this.currentTime();
     return (
       currentTime >= chapter.startInSeconds &&
-      currentTime <= chapter.endInSeconds
+      currentTime < chapter.endInSeconds
     );
   }
 
