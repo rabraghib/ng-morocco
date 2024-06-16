@@ -8,7 +8,7 @@
   "scripts": {
     "ng": "ng",
     "dev": "ng serve",
-    "start": "yarn dev",
+    "start": "npm run dev",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -48,13 +48,9 @@
     "@angular-devkit/build-angular": "^18.0.0",
     "@angular/cli": "^18.0.0",
     "@angular/compiler-cli": "^18.0.0",
-    "@nx/angular": "^19.1.0",
-    "@nx/devkit": "^19.1.0",
-    "@nx/vite": "^19.1.0",
     "@tailwindcss/typography": "^0.5.13",
     "autoprefixer": "^10.4.14",
     "jsdom": "^22.0.0",
-    "nx": "^19.1.0",
     "postcss": "^8.4.21",
     "prettier": "^3.3.2",
     "tailwindcss": "^3.3.1",

@@ -12,10 +12,4 @@ import { NewsletterComponent } from './newsletter/newsletter.component';
     <app-newsletter></app-newsletter>
   `,
 })
-export default class HomeComponent {
-  count = signal(0);
-
-  increment() {
-    this.count.update((count) => count + 1);
-  }
-}
+export default class HomeComponent {}

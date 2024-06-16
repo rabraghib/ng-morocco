@@ -2,7 +2,6 @@ import { Component, inject, input } from '@angular/core';
 import { PlaylistEditButtonComponent } from './edit-button.component';
 import { Chapter, VideoItem } from '../../../core/models';
 import { getVideFilePath } from '../../../shared/helpers/video';
-import { timeToSeconds } from '../../../shared/helpers/time';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
