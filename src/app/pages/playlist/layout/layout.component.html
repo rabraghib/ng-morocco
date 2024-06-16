@@ -17,7 +17,6 @@
           @for (chapter of chapters; track $index) {
             <li>
               <a
-                routerLink="/"
                 (click)="seekToChapter(chapter)"
                 class="cursor-pointer {{
                   isActive(chapter)

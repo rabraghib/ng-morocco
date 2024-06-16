@@ -2,11 +2,13 @@ import {
   ChangeDetectionStrategy,
   Component,
   Injector,
+  OnInit,
   ViewEncapsulation,
   effect,
   inject,
   input,
   output,
+  runInInjectionContext,
   viewChild,
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -40,7 +42,7 @@ import { interval, map } from 'rxjs';
     }
   `,
 })
-export class VideoPlayerComponent {
+export class VideoPlayerComponent implements OnInit {
   readonly videoId = input<string>();
   readonly startSeconds = input<number>(0);
   readonly endSeconds = input<number>(0);
@@ -57,8 +59,29 @@ export class VideoPlayerComponent {
         map(() => Math.floor(this.player().getCurrentTime())),
       )
       .subscribe((time) => this.currentTime.emit(time));
-    effect(() => {
-      this.player().seekTo(this.startSeconds(), true);
+  }
+
+  ngOnInit() {
+    const duration = this.player().getDuration();
+    this.player().stateChange.subscribe((_) => {
+      const currentTime = this.player().getCurrentTime();
+      if (currentTime >= duration && duration > 0) {
+        this.seekToStartTime();
+      }
     });
+    runInInjectionContext(this.injector, () => {
+      effect(() => {
+        this.seekToStartTime();
+      });
+    });
+  }
+
+  seekToStartTime() {
+    const duration = this.player().getDuration();
+    const isOutOfRange =
+      this.startSeconds() < 0 ||
+      (this.startSeconds() > duration && duration > 0);
+    this.player().seekTo(isOutOfRange ? 0 : this.startSeconds(), true);
+    this.player().playVideo();
   }
 }
