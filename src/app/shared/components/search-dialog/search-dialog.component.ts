@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { timeToSeconds } from '../../helpers/time';
 import { KeyValuePipe } from '@angular/common';
 import { Dialog } from '@angular/cdk/dialog';
+import { SearchService } from '../../../core/services/search.service';
 
 @Component({
   selector: 'app-search-dialog',
@@ -16,7 +17,7 @@ import { Dialog } from '@angular/cdk/dialog';
 export class SearchDialogComponent {
   readonly router = inject(Router);
   readonly dialog = inject(Dialog);
-  // readonly searchService = inject(SearchService);
+  readonly searchService = inject(SearchService);
 
   readonly query = signal('');
   readonly results = signal<Map<string, SearchHit[]>>(
@@ -30,18 +31,17 @@ export class SearchDialogComponent {
       return;
     }
     this.query.set(query);
-    // TODO: fix algoria breaking build
-    // const results = await this.searchService.search<SearchHit>(query);
-    // this.results.set(
-    //   (results?.hits || []).reduce((grouped: Map<string, SearchHit[]>, hit) => {
-    //     const titles = grouped.get(hit.session.title) || [];
-    //     if (!titles.length) {
-    //       grouped.set(hit.session.title, titles);
-    //     }
-    //     titles.push(hit);
-    //     return grouped;
-    //   }, new Map<string, SearchHit[]>()),
-    // );
+    const results = await this.searchService.search<SearchHit>(query);
+    this.results.set(
+      (results?.hits || []).reduce((grouped: Map<string, SearchHit[]>, hit) => {
+        const titles = grouped.get(hit.session.title) || [];
+        if (!titles.length) {
+          grouped.set(hit.session.title, titles);
+        }
+        titles.push(hit);
+        return grouped;
+      }, new Map<string, SearchHit[]>()),
+    );
   }
 
   onSearchHit(hit: SearchHit) {

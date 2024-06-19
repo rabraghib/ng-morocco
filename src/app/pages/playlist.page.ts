@@ -1,25 +1,16 @@
 import { toSignal } from '@angular/core/rxjs-interop';
-import {
-  Component,
-  Input,
-  computed,
-  effect,
-  inject,
-  input,
-} from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import {
   PlaylistSidebarComponent,
   SidebarItem,
 } from './playlist/sidebar/sidebar.component';
-// import { load } from './playlist.server';
-import { LoadResult, injectLoad } from '@analogjs/router';
+import { injectLoad } from '@analogjs/router';
 import { RouterOutlet } from '@angular/router';
 import { load } from './playlist.server';
-import { DatePipe } from '@angular/common';
+import { formatDate } from '@angular/common';
 
 @Component({
   standalone: true,
-  providers: [DatePipe],
   imports: [PlaylistSidebarComponent, RouterOutlet],
   template: `
     <section
@@ -35,8 +26,6 @@ import { DatePipe } from '@angular/common';
   `,
 })
 export default class PlaylistPage {
-  private readonly datePipe = inject(DatePipe);
-
   readonly playlist = toSignal(injectLoad<typeof load>(), {
     requireSync: true,
   });
@@ -52,7 +41,11 @@ export default class PlaylistPage {
     for (const videoItem of this.playlist()) {
       const title = videoItem?.meta?.title || videoItem.title;
       if (!title) continue;
-      const formattedDate = this.datePipe.transform(videoItem.publishedAt);
+      const formattedDate = formatDate(
+        videoItem.publishedAt,
+        'mediumDate',
+        'en-US',
+      );
       items.push({
         title: title,
         route: `/playlist/${videoItem.id}`,

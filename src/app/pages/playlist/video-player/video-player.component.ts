@@ -3,7 +3,6 @@ import {
   Component,
   Injector,
   OnInit,
-  ViewEncapsulation,
   effect,
   inject,
   input,
@@ -43,6 +42,7 @@ export class VideoPlayerComponent implements OnInit {
 
   ngOnInit() {
     const duration = this.player().getDuration();
+    this.seekToStartTime();
     this.player().stateChange.subscribe((_) => {
       const currentTime = this.player().getCurrentTime();
       if (currentTime >= duration && duration > 0) {

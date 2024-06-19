@@ -2,6 +2,7 @@
 
 import { defineConfig, loadEnv } from 'vite';
 import analog from '@analogjs/platform';
+import { nodePolyfills } from 'vite-plugin-node-polyfills';
 
 if (process.env['NETLIFY'] === 'true') {
   let base = process.env['URL'];
@@ -10,6 +11,7 @@ if (process.env['NETLIFY'] === 'true') {
     base = `${process.env['DEPLOY_PRIME_URL']}/`;
   }
 
+  process.env['VITE_BASE_URL'] = base;
   process.env['VITE_ANALOG_PUBLIC_BASE_URL'] = base;
 }
 
@@ -24,7 +26,7 @@ export default defineConfig(async ({ mode }) => {
       mainFields: ['module'],
     },
     ssr: {
-      noExternal: ['@ngaox/**', '@algolia/**', 'algoliasearch'],
+      noExternal: ['@ngaox/**', 'ngx-markdown'],
     },
     plugins: [
       analog({
@@ -32,6 +34,7 @@ export default defineConfig(async ({ mode }) => {
           inlineStylesExtension: 'scss',
         },
       }),
+      nodePolyfills(),
     ],
     test: {
       globals: true,

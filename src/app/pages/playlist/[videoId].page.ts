@@ -13,7 +13,13 @@ import { getVideFilePath } from '../../shared/helpers/video';
 
 @Component({
   standalone: true,
-  providers: [],
+  imports: [
+    PlaylistLayoutComponent,
+    MarkdownModule,
+    AsyncPipe,
+    VideoPlayerComponent,
+    PlaylistEditButtonComponent,
+  ],
   template: `
     <app-playlist-layout [video]="video()" [currentTime]="currentTime()">
       @if (!!video().meta) {
@@ -41,13 +47,6 @@ import { getVideFilePath } from '../../shared/helpers/video';
       }
     </app-playlist-layout>
   `,
-  imports: [
-    PlaylistLayoutComponent,
-    MarkdownModule,
-    AsyncPipe,
-    VideoPlayerComponent,
-    PlaylistEditButtonComponent,
-  ],
 })
 export default class VideoIdPage {
   readonly route = inject(ActivatedRoute);
