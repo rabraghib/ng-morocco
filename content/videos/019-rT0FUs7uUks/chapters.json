@@ -1,0 +1,92 @@
+[
+  {
+    "title": "Introduction to the Series",
+    "start": "03:07",
+    "end": "05:55",
+    "tags": ["nutshell"]
+  },
+  {
+    "title": "The History of Angular",
+    "start": "05:55",
+    "end": "14:20",
+    "tags": ["nutshell", "creation"]
+  },
+  {
+    "title": "Angular in Morocco",
+    "start": "14:20",
+    "end": "20:42",
+    "tags": ["morocco", "job", "offers"]
+  },
+  {
+    "title": "What is a Single Page Application?",
+    "start": "20:42",
+    "end": "27:16",
+    "tags": ["nutshell", "definition"]
+  },
+  {
+    "title": "Single Page Applications and SEO",
+    "start": "27:16",
+    "end": "28:58",
+    "tags": ["nutshell", "seo", "ssr"]
+  },
+  {
+    "title": "Angular for Backend developers",
+    "start": "29:00",
+    "end": "30:35",
+    "tags": ["nutshell", "java", "c#", "python", "php"]
+  },
+  {
+    "title": "SPA and routing in a nutshell",
+    "start": "30:35",
+    "end": "40:38",
+    "tags": ["nutshell"]
+  },
+  {
+    "title": "Introduction to components",
+    "start": "40:38",
+    "end": "47:13",
+    "tags": ["beginner", "components"]
+  },
+  {
+    "title": "How data-binding works?",
+    "start": "47:13",
+    "end": "50:13",
+    "tags": ["intermediate", "data-binding"]
+  },
+  {
+    "title": "Declaring components",
+    "start": "50:13",
+    "end": "55:55",
+    "tags": ["beginner", "components"]
+  },
+  {
+    "title": "Why do we need modules?",
+    "start": "55:55",
+    "end": "01:01:08",
+    "tags": ["advanced", "modules"]
+  },
+  {
+    "title": "Changing interpolation signs",
+    "start": "01:01:08",
+    "end": "01:05:40",
+    "tags": ["advanced", "components", "wassim chegham"]
+  },
+  {
+    "title": "Angular CLI project structure",
+    "start": "01:05:40",
+    "end": "01:06:09",
+    "tags": ["intermediate", "cli"]
+  },
+  {
+    "title": "Angular dependencies",
+    "start": "01:06:09",
+    "end": "01:11:43",
+    "tags": ["intermediate", "node", "npm"]
+  },
+  {
+    "title": "TSConfig target config",
+    "start": "01:11:44",
+    "end": "01:12:33",
+    "tags": ["intermediate", "typescript", "tsconfig"]
+  }
+]

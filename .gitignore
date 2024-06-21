@@ -56,3 +56,4 @@ Thumbs.db
 # Generated files for dynamic route pre rendering
 routes.txt
 generated
+!generated/*.d.ts

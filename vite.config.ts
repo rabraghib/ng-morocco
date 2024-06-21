@@ -1,8 +1,13 @@
 /// <reference types="vitest" />
 
-import { defineConfig, loadEnv } from 'vite';
+import { defineConfig, normalizePath } from 'vite';
 import analog from '@analogjs/platform';
 import { nodePolyfills } from 'vite-plugin-node-polyfills';
+import { getPlaylistRoutes } from './src/server/lib/youtube-api';
+import { expand as dotenvExpand } from 'dotenv-expand';
+import * as dotenv from 'dotenv';
+import * as path from 'path';
+import { prepareDatabaseAndSecrets } from './src/server/prepare';
 
 if (process.env['NETLIFY'] === 'true') {
   let base = process.env['URL'];
@@ -17,7 +22,14 @@ if (process.env['NETLIFY'] === 'true') {
 
 // https://vitejs.dev/config/
 export default defineConfig(async ({ mode }) => {
-  const env = loadEnv(mode, process.cwd());
+  const envFiles = getEnvFilesForMode(mode, process.cwd());
+  dotenvExpand(
+    dotenv.config({
+      path: envFiles,
+    }),
+  );
+  await prepareDatabaseAndSecrets();
+  const playlistRoutes = await getPlaylistRoutes();
   return {
     build: {
       target: ['es2020'],
@@ -33,6 +45,9 @@ export default defineConfig(async ({ mode }) => {
         vite: {
           inlineStylesExtension: 'scss',
         },
+        prerender: {
+          routes: ['/', '/playlist', ...playlistRoutes],
+        },
       }),
       nodePolyfills(),
     ],
@@ -44,8 +59,16 @@ export default defineConfig(async ({ mode }) => {
       reporters: ['default'],
     },
     define: {
-      'import.meta.env': env,
       'import.meta.vitest': mode !== 'production',
     },
   };
 });
+
+function getEnvFilesForMode(mode: string, envDir: string): string[] {
+  return [
+    /** mode local file */ `.env.${mode}.local`,
+    /** mode file */ `.env.${mode}`,
+    /** local file */ `.env.local`,
+    /** default file */ `.env`,
+  ].map((file) => normalizePath(path.join(envDir, file)));
+}
