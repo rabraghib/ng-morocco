@@ -10,8 +10,8 @@ export const load = async ({ params }: PageServerLoad): Promise<VideoItem> => {
     throw new Error('Video id is required');
   }
   try {
-    const { metadata } = await getDBVideoContent(videoId);
-    const data = (await getVideo(videoId)).items?.[0];
+    const { metadata, video: videoData } = await getDBVideoContent(videoId);
+    const data = (await getVideo(videoId)).items?.[0] ?? videoData?.items?.[0];
     if (!data) {
       throw new Error('Video not found');
     }

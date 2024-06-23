@@ -19,7 +19,7 @@ import { formatDate } from '@angular/common';
       <aside class="h-fit pt-4 pb-10 sticky top-[136px] md:top-[72px]">
         <app-playlist-sidebar [items]="sidebarItems()"></app-playlist-sidebar>
       </aside>
-      <main class="h-fit pt-6 pb-10 sticky top-[136px] md:top-[72px]">
+      <main class="h-fit pt-6 pb-10 w-full sticky top-[136px] md:top-[72px]">
         <router-outlet></router-outlet>
       </main>
     </section>
